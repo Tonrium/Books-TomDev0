@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class NoteBookScripts : BasePanel
+public class NoteBookScripts : BasePanel, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     // Start is called before the first frame update
     private Image image;
@@ -19,7 +19,7 @@ public class NoteBookScripts : BasePanel
     }
 
     // 当鼠标进入时调用
-    public void IOnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         // 图片放大10%
         image.transform.localScale = originalScale * 1.1f;
@@ -27,10 +27,16 @@ public class NoteBookScripts : BasePanel
     }
 
     // 当鼠标离开时调用
-    public void IOnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
         // 恢复到原始大小
         image.transform.localScale = originalScale;
         print("2");
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // 这里是点击后执行的逻辑
+        EventCenter.Instance.EventTrigger("TapNoteBook");
+        print("Image clicked");
     }
 }
