@@ -169,4 +169,8 @@ public class UIMgr : BaseManager<UIMgr>
             return panelDic[panelName] as T;
         return null;
     }
+    public void wakeUp()
+    {
+        //用于在不需要任何处理时生成UIMgr实例
+    }
 }
